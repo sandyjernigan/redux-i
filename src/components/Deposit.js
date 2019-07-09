@@ -1,0 +1,59 @@
+import React from 'react'
+
+class Deposit extends React.Component {
+	constructor() {
+		super()
+		this.state = {
+			amount: '',
+			account: 'checking',
+		}
+	}
+
+	handleChange = (evt) => {
+		evt.preventDefault()
+
+		this.setState({
+			[evt.target.name]: evt.target.value,
+		})
+	}
+
+	depositMoney = (evt) => {
+		evt.preventDefault()
+
+		const { amount, account } = this.state
+		this.props.makeDeposit(amount, account)
+
+		this.setState({
+			amount: '',
+		})
+	}
+
+	render() {
+		const { amount, account } = this.state
+		const { checking, savings } = this.props
+
+		return (
+			<section>
+				<h2>Make a Deposit</h2>
+				<h6>Current Total: ${checking + savings}</h6>
+
+				<form onSubmit={this.depositMoney}>
+					<input type="number" name="amount" placeholder="Amount in USD" value=
+					{amount} onChange={this.handleChange} required />
+					
+					<span> to </span>
+					
+					<select name="account" value={account} onChange={this.handleChange}>
+						<option value="checking">Checking</option>
+						<option value="savings">Savings</option>
+					</select>
+					<br />
+
+					<button type="submit">Deposit</button>
+				</form>
+			</section>
+		)
+	}
+}
+
+export default Deposit

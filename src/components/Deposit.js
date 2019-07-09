@@ -29,13 +29,13 @@ class Deposit extends React.Component {
 	}
 
 	render() {
+		const { total } = this.props
 		const { amount, account } = this.state
-		const { checking, savings } = this.props
 
 		return (
 			<section>
 				<h2>Make a Deposit</h2>
-				<h6>Current Total: ${checking + savings}</h6>
+				<h6>CURRENT TOTAL: ${total}</h6>
 
 				<form onSubmit={this.depositMoney}>
 					<input type="number" name="amount" placeholder="Amount in USD" value=
@@ -47,6 +47,7 @@ class Deposit extends React.Component {
 						<option value="checking">Checking</option>
 						<option value="savings">Savings</option>
 					</select>
+					
 					<br />
 
 					<button type="submit">Deposit</button>

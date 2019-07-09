@@ -20,11 +20,12 @@ class App extends React.Component {
 
 	render() {
 		const { checking, savings } = this.state
+		const total = checking + savings
 
 		return (
 			<div className="app">
-				<Balances checking={checking} savings={savings} />
-				<Deposit checking={checking} savings={savings} makeDeposit={this.makeDeposit} />
+				<Balances total={total} checking={checking} savings={savings} />
+				<Deposit total={total} makeDeposit={this.makeDeposit} />
 			</div>
 		)
 	}
